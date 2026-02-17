@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIYAD AUTO PRESTIGE | Royal Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@700&family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --red: #C8102E; --gold: #B4975A; --blue: #002349; }
+        body { font-family: 'Outfit', sans-serif; margin: 0; background: #fdfdfd; color: var(--blue); }
+        .slogan-bar { background: var(--red); color: white; text-align: center; padding: 10px; font-size: 0.8rem; font-weight: bold; letter-spacing: 2px; }
+        nav { background: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--red); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'Bodoni Moda', serif; font-size: 1.5rem; text-decoration: none; color: var(--blue); font-weight: 900; }
+        .logo span { color: var(--red); }
+
+        /* Hero avec la photo du chauffeur */
+        .hero { height: 75vh; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('vieux-chauffeur.jpg.png') center/cover no-repeat; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: white; }
+        .hero h1 { font-family: 'Bodoni Moda', serif; font-size: clamp(2.5rem, 8vw, 5rem); margin: 0; }
+        .hero p { color: var(--gold); font-weight: bold; letter-spacing: 4px; text-transform: uppercase; margin-top: 15px; }
+
+        /* Grilles */
+        .container { padding: 60px 5%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); }
+        .card img { width: 100%; height: 300px; object-fit: cover; }
+        .card-body { padding: 25px; text-align: center; }
+        .price { color: var(--red); font-weight: bold; font-size: 1.2rem; display: block; margin-top: 10px; }
+
+        /* Modal Réservation */
+        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,35,73,0.95); }
+        .modal-content { background: white; margin: 10% auto; padding: 30px; width: 90%; max-width: 450px; border-radius: 15px; position: relative; }
+        .btn-wa { background: #25d366; color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-top: 20px; }
+        .close { position: absolute; right: 20px; top: 15px; font-size: 2rem; cursor: pointer; }
+
+        /* Univers Vintage */
+        #vintage-ui { display: none; background: #0a0a0a; color: var(--gold); min-height: 100vh; padding: 60px 5%; }
+        .switch { position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px; background: var(--gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; z-index: 5000; border: 3px solid white; }
+        footer { background: var(--blue); color: white; padding: 60px 5%; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="slogan-bar">LE PRESTIGE N'A PAS D'ÂGE, IL A UNE ADRESSE.</div>
+
+<nav>
+    <a href="#" class="logo">RIYAD AUTO <span>PRESTIGE</span></a>
+    <div style="font-weight:700;"><i class="fas fa-phone-alt" style="color:var(--red)"></i> +212 698 824 872</div>
+</nav>
+
+<div id="modern-ui">
+    <div class="hero">
+        <h1>L'ÉLITE AUTOMOBILE</h1>
+        <p>Prestige & Excellence à Rabat</p>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <div class="card" onclick="openRes('Mustang GT')">
+                <img src="mustang.jpg.jpeg" alt="Mustang">
+                <div class="card-body"><h3>Mustang GT</h3><span class="price">1200 DH / Jour</span></div>
+            </div>
+            <div class="card" onclick="openRes('BMW M-Sport')">
+                <img src="bmw.jpg.jpeg" alt="BMW">
+                <div class="card-body"><h3>BMW M-Sport</h3><span class="price">900 DH / Jour</span></div>
+            </div>
+            <div class="card" onclick="openRes('Skoda Octavia')">
+                <img src="skoda.jpg.jpeg" alt="Skoda">
+                <div class="card-body"><h3>Skoda Octavia</h3><span class="price">500 DH / Jour</span></div>
+            </div>
+            <div class="card" onclick="openRes('Chevrolet Camaro')">
+                <img src="camaro.jpg.jpeg" alt="Camaro">
+                <div class="card-body"><h3>Chevrolet Camaro</h3><span class="price">1300 DH / Jour</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="vintage-ui">
+    <h2 style="text-align:center; font-family:'Bodoni Moda'; font-size:3rem; margin-bottom:40px;">Collection Héritage</h2>
+    <div class="grid">
+        <div class="card" style="background:#111; color:var(--gold)" onclick="openRes('Mercedes W140')">
+            <img src="mercedes.jpg.jpg" alt="W140">
+            <div class="card-body"><h3>Mercedes W140</h3><span class="price">1500 DH / Jour</span></div>
+        </div>
+        <div class="card" style="background:#111; color:var(--gold)" onclick="openRes('Wedding Deluxe')">
+            <img src="wedding-car.jpg.jpg" alt="Wedding">
+            <div class="card-body"><h3>Wedding Deluxe</h3><span class="price" style="color:white">Sur Devis</span></div>
+        </div>
+        <div class="card" style="background:#111; color:var(--gold)" onclick="openRes('Mercedes V8')">
+            <img src="mercedes-v8.jpg.jpg" alt="V8">
+            <div class="card-body"><h3>Mercedes Classic V8</h3><span class="price" style="color:white">Exclusif</span></div>
+        </div>
+    </div>
+</div>
+
+<div id="resModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('resModal').style.display='none'">&times;</span>
+        <h2 id="vehTitle" style="color:var(--red); text-align:center; font-family:'Bodoni Moda';">Réserver</h2>
+        <div style="margin-top:20px;">
+            <label style="display:block; font-weight:bold; margin-bottom:5px;">Votre Nom</label>
+            <input type="text" id="custNom" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px;" placeholder="Ex: Ahmed">
+            <label style="display:block; font-weight:bold; margin-top:15px; margin-bottom:5px;">Date de début</label>
+            <input type="date" id="custDate" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px;">
+            <button class="btn-wa" onclick="sendWA()">CONFIRMER SUR WHATSAPP</button>
+        </div>
+    </div>
+</div>
+
+<div class="switch" onclick="toggleVintage()"><i class="fas fa-history"></i></div>
+<div id="yt-player"></div>
+
+<footer>
+    <h2 class="logo" style="color:white">RIYAD AUTO <span style="color:var(--gold)">PRESTIGE</span></h2>
+    <p>Rabat, Maroc - Excellence Automobile</p>
+</footer>
+
+<script>
+    let activeVeh = "";
+    function openRes(v) { activeVeh = v; document.getElementById('vehTitle').innerText = v; document.getElementById('resModal').style.display = 'block'; }
+    function sendWA() {
+        const n = document.getElementById('custNom').value;
+        const d = document.getElementById('custDate').value;
+        if(!n || !d) { alert("Veuillez remplir les informations svp"); return; }
+        window.open(`https://wa.me/212698824872?text=Bonjour, je suis ${n}. Je souhaite réserver la ${activeVeh} pour le ${d}.`, '_blank');
+    }
+
+    function toggleVintage() {
+        const m = document.getElementById('modern-ui');
+        const v = document.getElementById('vintage-ui');
+        const s = document.querySelector('.switch');
+        if(v.style.display === 'none' || v.style.display === '') {
+            m.style.display = 'none'; v.style.display = 'block'; s.style.background = '#C8102E'; player.playVideo();
+        } else {
+            m.style.display = 'block'; v.style.display = 'none'; s.style.background = '#B4975A'; player.pauseVideo();
+        }
+    }
+
+    var tag = document.createElement('script'); tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0]; firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    var player;
+    function onYouTubeIframeAPIReady() { player = new YT.Player('yt-player', { height: '0', width: '0', videoId: 'tJg82oRg8GU', playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'tJg82oRg8GU' } }); }
+</script>
+</body>
+</html>
